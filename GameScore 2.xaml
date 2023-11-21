@@ -1,0 +1,241 @@
+﻿<Window x:Class="Dewey_Mastery.GameScore"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Dewey_Mastery"
+        mc:Ignorable="d"
+        Title="GameScore" Height="560" Width="800"
+       Background="{x:Null}"
+       AllowsTransparency="True"
+       WindowStyle="None"
+       WindowStartupLocation="CenterScreen"
+       MouseDown="Window_MouseDown">
+
+    <Grid>
+
+
+
+        <Border CornerRadius="30">
+            <Border.Background>
+                <ImageBrush ImageSource="Assets/gameRulesBackground.jpeg" Stretch="UniformToFill"/>
+            </Border.Background>
+
+
+            <Border CornerRadius="15"
+
+           BorderThickness="1">
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="45"/>
+                            <ColumnDefinition Width="35"/>
+                            <ColumnDefinition Width="35"/>
+                        </Grid.ColumnDefinitions>
+
+
+                        <Button x:Name="btnMinimize"                          
+                            BorderThickness="0"
+                            Content="-"
+                            Foreground="White"
+                            FontSize="16"
+                            FontFamily="Montserrat"
+                            Cursor="Hand"
+                            Grid.Column="1"
+                            Click="btnMinimize_Click">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="#696969"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#232b2b"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+
+                                </Style>
+                            </Button.Style>
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Width="30" Height="18" CornerRadius="9"
+                                        Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+
+                                    </Border>
+
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                        <Button x:Name="btnClose"
+                            BorderThickness="0"
+                            Content="X"
+                            Foreground="White"
+                            FontSize="10"
+                            FontFamily="Montserrat"
+                            Cursor="Hand"
+                            Grid.Column="2"
+                            Click="btnClose_Click">
+
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="#688985"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#232b2b"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+
+                                </Style>
+                            </Button.Style>
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Width="30" Height="18" CornerRadius="9"
+                                        Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                    </Grid>
+
+                    <StackPanel Width="700"
+                            Grid.Row="1"
+                            Margin="10,0,10,0"
+                            HorizontalAlignment="Center"
+                            Orientation="Vertical">
+
+                        <!-- Badge Animation Video-->
+                        <MediaElement x:Name="BadgeVideo" 
+                                  Source="Badges/loadingBadgeTemplate.mp4" 
+                                  Height="200" 
+                                  Width="200" 
+                                  LoadedBehavior="Play" 
+                                  UnloadedBehavior="Manual"
+                                      MediaEnded="BadgeVideo_MediaEnded"
+                                      Margin="0 -40 0 0"/>
+
+
+                        <TextBlock x:Name="congratsMessage" Margin="0 -20 0 0" Width="550" FontSize="15" FontFamily="Consolas"
+                           FontWeight="Bold" Text="empty"
+                               TextWrapping="Wrap"
+                               TextAlignment="Center" Foreground="White"/>
+                        
+                        <TextBlock  HorizontalAlignment="Center" FontSize="28" FontFamily="Basement Grotesque Black"
+                           FontWeight="Bold" Text="YOUR SCORE"
+                               TextWrapping="Wrap"
+                               TextAlignment="Center" Foreground="#a9ded8"/>
+                        <TextBlock x:Name="ScoreBoardText" Margin="0 0 0 0" HorizontalAlignment="Center" Width="150" FontSize="50" FontFamily="Consolas"
+                           FontWeight="Bold" Text="empty"
+                               TextWrapping="Wrap"
+                               TextAlignment="Center" Foreground="White"/>
+                        <TextBlock x:Name="RemainingTimeText" Width="250" FontSize="15" FontFamily="Consolas"
+                           FontWeight="Bold" Text="empty"
+                               TextWrapping="Wrap"
+                               TextAlignment="Center" Foreground="White"/>
+
+
+
+                        <Button x:Name="btnPlayAgain" FontFamily="Basement Grotesque Black" Foreground="White" FontWeight="Medium" Height="50" Margin="0 40 0 0" Width="180" Click="btnPlayAgain_Click">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="#1b1b1b"/>
+                                    <Setter Property="BorderThickness" Value="3"/>
+                                    <Setter Property="BorderBrush" Value="#343434"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="BorderThickness" Value="3"/>
+                                            <Setter Property="BorderBrush" Value="#a9ded8"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Grid>
+
+
+                                        <!-- Button Content -->
+                                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="20">
+                                            <!-- Content Container (StackPanel) -->
+                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                                <!-- Text Content -->
+                                                <TextBlock x:Name="Hleeoe" Text="Play Again" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                                            </StackPanel>
+                                        </Border>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                        <Button x:Name="btnReturnHome" FontFamily="Basement Grotesque Black" Foreground="White" FontWeight="Medium" Height="50" Margin="0 30 0 0" Width="180" Click="btnReturnHome_Click">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="#1b1b1b"/>
+                                    <Setter Property="BorderThickness" Value="3"/>
+                                    <Setter Property="BorderBrush" Value="#343434"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="BorderThickness" Value="3"/>
+                                            <Setter Property="BorderBrush" Value="#a9ded8"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Grid>
+
+
+                                        <!-- Button Content -->
+                                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="20">
+                                            <!-- Content Container (StackPanel) -->
+                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                                <!-- Text Content -->
+                                                <TextBlock  Text="Return Home" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                                            </StackPanel>
+                                            
+                                            
+                                        </Border>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </StackPanel>
+
+                    <StackPanel Width="300"
+                            Grid.Row="1"
+                            Margin="10,0,10,0"
+                            HorizontalAlignment="Left"
+                            Orientation="Vertical">
+
+                        <!-- Badge Animation Video-->
+                        <MediaElement x:Name="BadgeVideo2" 
+                                  Source="\\Mac\Home\Desktop\Dewey_Mastery\image\BadgeSpotless.mp4" 
+                                  Height="200" 
+                                  Width="200" 
+                                  LoadedBehavior="Manual" 
+                                  UnloadedBehavior="Manual"/>
+
+                    </StackPanel>
+
+
+                </Grid>
+            </Border>
+        </Border>
+    </Grid>
+
+
+</Window>

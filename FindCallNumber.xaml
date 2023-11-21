@@ -1,0 +1,424 @@
+﻿<Window x:Class="Dewey_Mastery.FindCallNumber"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Dewey_Mastery"
+        mc:Ignorable="d"
+        Title="FindCallNumber" Height="560" Width="900"
+        Background="{x:Null}"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        MouseDown="Window_MouseDown">
+
+    <!-- FindCallNumber Window  -->
+    <Border CornerRadius="30">
+        <!-- Applying Background image -->
+        <Border.Background>
+            <ImageBrush ImageSource="Assets/replaceBookBackground.JPG" Stretch="UniformToFill"/>
+        </Border.Background>
+
+        <!-- Defining Window specs -->
+        <Border CornerRadius="15"
+           
+            BorderThickness="1">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <!-- Window Controls -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="45"/>
+                        <ColumnDefinition Width="35"/>
+                        <ColumnDefinition Width="35"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Minimize Window Button -->
+                    <Button x:Name="btnMinimize"                          
+                            BorderThickness="0"
+                            Content="-"
+                            Foreground="White"
+                            FontSize="16"
+                            FontFamily="Montserrat"
+                            Cursor="Hand"
+                            Grid.Column="1"
+                            Click="btnMinimize_Click">
+
+                        <!-- Applying Button style Message -->
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#696969"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#232b2b"/>
+                                    </Trigger>
+                                </Style.Triggers>
+
+                            </Style>
+                        </Button.Style>
+
+                        <!-- Applying Button template -->
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="30" Height="18" CornerRadius="9"
+                                        Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+
+                                </Border>
+
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <!-- Close Windown Button -->
+                    <Button x:Name="btnClose"
+                            BorderThickness="0"
+                            Content="X"
+                            Foreground="White"
+                            FontSize="10"
+                            FontFamily="Montserrat"
+                            Cursor="Hand"
+                            Grid.Column="2"
+                            Click="btnClose_Click">
+
+                        <!-- Applying Button style -->
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#688985"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#232b2b"/>
+                                    </Trigger>
+                                </Style.Triggers>
+
+                            </Style>
+                        </Button.Style>
+                        <!-- Applying Button template -->
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="30" Height="18" CornerRadius="9"
+                                        Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                </Grid>
+
+                <!-- Window Primary Content -->
+                <StackPanel Width="800"
+                            Grid.Row="1"
+                            Margin="10,0,10,0"
+                            HorizontalAlignment="Center"
+                            Orientation="Vertical">
+
+                    <!-- Window Heading -->
+                    <TextBlock Margin="0 40 0 0" HorizontalAlignment="Center" FontSize="18" 
+                           FontWeight="Bold" Text="COMPLETE THE QUIZ"
+                               TextWrapping="Wrap"
+                               TextAlignment="Center" Foreground="White"/>
+
+                    <!-- Window Sub-Heading 1 -->
+                    <TextBlock Margin="0 10 0 0" HorizontalAlignment="Center" FontSize="13" FontFamily="Consolas"
+                           FontWeight="Bold" Text="Using The Dewey Decmal sytem arrange these 10 books in ascending order"
+                               TextWrapping="Wrap"
+                               TextAlignment="Center" Foreground="White"/>
+
+                    <!-- Window Sub-Heading 2 -->
+                    <TextBlock Margin="0 0 0 0" HorizontalAlignment="Center" FontSize="13" FontFamily="Consolas"
+                           FontWeight="Bold" Text="Click and drag on the values to reorder them"
+                               TextWrapping="Wrap"
+                               TextAlignment="Center" Foreground="White"/>
+
+                    <!-- Timer Container -->
+                    <StackPanel Width="180"
+                            Grid.Row="1"
+                            Margin="0,0,0,0"
+                            HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                            Orientation="Horizontal">
+
+                        <!-- Timer Text -->
+                        <TextBlock Margin="0 30 10 10" HorizontalAlignment="Center" FontSize="17" FontFamily="Consolas"
+                           FontWeight="Bold" Text="Timer:"
+                               TextWrapping="Wrap"
+                               TextAlignment="Center" Foreground="White"/>
+
+                        <!-- Timer Value -->
+                        <TextBlock x:Name="timerValue" Margin="0 5 0 5" HorizontalAlignment="Center" FontSize="40" 
+                           FontWeight="Bold" Text="00:00"
+                               TextWrapping="Wrap"
+                               TextAlignment="Center" Foreground="White"/>
+
+                    </StackPanel>
+
+                    <!-- Displayed Text Container -->
+                    <StackPanel Width="300"
+                            Grid.Row="1"
+                            Margin="0,20,0,30"
+                            HorizontalAlignment="Center"
+                            Orientation="Horizontal">
+
+                        <!-- Button Showcasing Text -->
+                        <Button x:Name="displayedText"
+                            BorderThickness="3"
+                                BorderBrush="#a9ded8"
+                            Content="Text"
+                            Foreground="White"
+                            FontSize="12"
+                            FontFamily="Basement Grotesque Black"
+                            Cursor="Hand"
+                            Width="300">
+
+                            <!-- Applying Button style -->
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}">
+                                    <Setter Property="Background" Value="#1b1b1b"/>
+                                    <Setter Property="BorderBrush" Value="#a9ded8"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#232b2b"/>
+                                            <Setter Property="BorderBrush" Value="#a9ded8"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+
+                            <!-- Applying Button Template -->
+                            <Button.Template>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Width="300" Height="50" CornerRadius="20"
+        Background="{TemplateBinding Background}"
+        BorderBrush="{TemplateBinding BorderBrush}"
+        BorderThickness="{TemplateBinding BorderThickness}">
+                                        <ContentPresenter VerticalAlignment="Center"
+                      HorizontalAlignment="Center"/>
+                                    </Border>
+
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </StackPanel>
+
+                    <!-- Hint Message Container -->
+                    <StackPanel Width="180"
+                            Grid.Row="1"
+                            Margin="0,0,0,30"
+                            HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                            Orientation="Horizontal">
+
+                        <!-- Hint Message Text -->
+                        <TextBlock x:Name="matchCheck" Margin="0 0 0 10" HorizontalAlignment="Center" FontSize="17" FontFamily="Consolas"
+                           FontWeight="Bold" Text=""
+                               TextWrapping="Wrap"
+                               TextAlignment="Center" Foreground="White"/>
+
+                    </StackPanel>
+
+                    <!-- Button Options Container -->
+                    <StackPanel Width="680"
+                            Grid.Row="1"
+                            Margin="0,0,0,0"
+                            HorizontalAlignment="Center"
+                            Orientation="Horizontal">
+
+                        <!-- Button Option 1  -->
+                        <Button x:Name="btnOption1"
+                            BorderThickness="3"
+                                BorderBrush="#343434"
+                            Content="Option 1"
+                            Foreground="White"
+                            FontSize="12"
+                            FontFamily="Basement Grotesque Black"
+                            Cursor="Hand"
+                            Grid.Column="2"
+                            Margin="0,0,40,0"
+                            Width="140"
+                                Click="btnOption1_Click">
+
+                            <!-- Applying Button Style  -->
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="#1b1b1b"/>
+                                    <Setter Property="BorderBrush" Value="#343434"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#232b2b"/>
+                                            <Setter Property="BorderBrush" Value="#a9ded8"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+
+                            <!-- Applying Button Template -->
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Width="140" Height="140" CornerRadius="20"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}">
+                                        <ContentPresenter>
+                                            <ContentPresenter.Content>
+                                                <TextBlock Text="{TemplateBinding Content}" Margin="0 45 0 45" TextWrapping="Wrap" TextAlignment="Center"/>
+                                            </ContentPresenter.Content>
+                                        </ContentPresenter>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                        <!-- Button Option 2 -->
+                        <Button x:Name="btnOption2"
+                            BorderThickness="3"
+                                BorderBrush="#343434"
+                            Content="Option 2"
+                            Foreground="White"
+                            FontSize="12"
+                            FontFamily="Basement Grotesque Black"
+                            Cursor="Hand"
+                            Grid.Column="2"
+                            Margin="0,0,40,0"
+                            Width="140"
+                            Click="btnOption2_Click">
+
+                            <!-- Applying Button Style -->
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="#1b1b1b"/>
+                                    <Setter Property="BorderBrush" Value="#343434"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#232b2b"/>
+                                            <Setter Property="BorderBrush" Value="#a9ded8"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+
+                            <!-- Applying Button Template -->
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Width="140" Height="140" CornerRadius="20"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}">
+                                        <ContentPresenter>
+                                            <ContentPresenter.Content>
+                                                <TextBlock Text="{TemplateBinding Content}" Margin="0 45 0 45" TextWrapping="Wrap" TextAlignment="Center"/>
+                                            </ContentPresenter.Content>
+                                        </ContentPresenter>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                        <!-- Button Option 3 -->
+                        <Button x:Name="btnOption3"
+                            BorderThickness="3"
+                                BorderBrush="#343434"
+                            Content="Option 3"
+                            Foreground="White"
+                            FontSize="12"
+                            FontFamily="Basement Grotesque Black"
+                            Cursor="Hand"
+                            Grid.Column="2"
+                            Margin="0,0,40,0"
+                            Width="140"
+                            Click="btnOption3_Click">
+
+                            <!-- Applying Button Style -->
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="#1b1b1b"/>
+                                    <Setter Property="BorderBrush" Value="#343434"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#232b2b"/>
+                                            <Setter Property="BorderBrush" Value="#a9ded8"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+
+                            <!-- Applying Button Template -->
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Width="140" Height="140" CornerRadius="20"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}">
+                                        <ContentPresenter>
+                                            <ContentPresenter.Content>
+                                                <TextBlock Text="{TemplateBinding Content}" Margin="0 45 0 45" TextWrapping="Wrap" TextAlignment="Center"/>
+                                            </ContentPresenter.Content>
+                                        </ContentPresenter>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                        <!-- Button Option 4 -->
+                        <Button x:Name="btnOption4"
+                            BorderThickness="4"
+                                BorderBrush="#343434"
+                            Content="Option 4"
+                            Foreground="White"
+                            FontSize="12"
+                            FontFamily="Basement Grotesque Black"
+                            Cursor="Hand"
+                            Grid.Column="2"
+                            Margin="0,0,40,0"
+                            Width="140"
+                            Click="btnOption4_Click">
+
+                            <!-- Applying Button Style -->
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="#1b1b1b"/>
+                                    <Setter Property="BorderBrush" Value="#343434"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#232b2b"/>
+                                            <Setter Property="BorderBrush" Value="#a9ded8"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+
+                            <!-- Applying button Template -->
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Width="140" Height="140" CornerRadius="20"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}">
+                                        <ContentPresenter>
+                                            <ContentPresenter.Content>
+                                                <TextBlock Text="{TemplateBinding Content}" Margin="0 45 0 45" TextWrapping="Wrap" TextAlignment="Center"/>
+                                            </ContentPresenter.Content>
+                                        </ContentPresenter>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                    </StackPanel>
+
+                </StackPanel>
+            </Grid>
+        </Border>
+
+    </Border>
+    
+</Window>

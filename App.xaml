@@ -1,0 +1,19 @@
+﻿<Application x:Class="Dewey_Mastery.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Dewey_Mastery"
+             StartupUri="Start.xaml">
+    <Application.Resources>
+        
+        <ImageBrush x:Key="playBtn_Icon"
+                    ImageSource="Assets/Play.png"
+                    Stretch="None" />
+        
+        
+
+    </Application.Resources>
+    
+</Application>
+
+
+

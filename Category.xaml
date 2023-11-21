@@ -1,0 +1,303 @@
+﻿<Window x:Class="Dewey_Mastery.Category"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Dewey_Mastery"
+        Title="Categry" Height="560" Width="900"
+        Background="{x:Null}"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        MouseDown="Window_MouseDown">
+
+    <!-- Category Window -->
+    <Border CornerRadius="30" >
+        <Border.Background>
+            <ImageBrush ImageSource="Assets/categoryBackground.jpeg" Stretch="UniformToFill"/>
+        </Border.Background>
+
+        <!-- Defining Window specs -->
+        <Border CornerRadius="15"
+           
+            BorderThickness="1">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <!-- Window Controls -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="45"/>
+                        <ColumnDefinition Width="35"/>
+                        <ColumnDefinition Width="35"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Minimize Window Button -->
+                    <Button x:Name="btnMinimize"                          
+                            BorderThickness="0"
+                            Content="-"
+                            Foreground="White"
+                            FontSize="16"
+                            FontFamily="Montserrat"
+                            Cursor="Hand"
+                            Grid.Column="1"
+                            Click="btnMinimize_Click">
+
+                        <!-- Applying Button Style -->
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#696969"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#232b2b"/>
+                                    </Trigger>
+                                </Style.Triggers>
+
+                            </Style>
+                        </Button.Style>
+
+                        <!-- Applying Button Template -->
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="30" Height="18" CornerRadius="9"
+                                        Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+
+                                </Border>
+
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <!-- Close Window Button -->
+                    <Button x:Name="btnClose"
+                            BorderThickness="0"
+                            Content="X"
+                            Foreground="White"
+                            FontSize="10"
+                            FontFamily="Montserrat"
+                            Cursor="Hand"
+                            Grid.Column="2"
+                            Click="btnClose_Click">
+
+                        <!-- Applying Button Style -->
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#688985"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#232b2b"/>
+                                    </Trigger>
+                                </Style.Triggers>
+
+                            </Style>
+                        </Button.Style>
+
+                        <!-- Applying Button Template -->
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="30" Height="18" CornerRadius="9"
+                                        Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                </Grid>
+
+                <!-- Window Primary Content -->
+                <StackPanel Width="700"
+                            Grid.Row="1"
+                            Margin="10,0,10,0"
+                            HorizontalAlignment="Center"
+                            Orientation="Vertical">
+
+                    <!-- Window Heading -->
+                    <TextBlock Margin="0 40 0 0" HorizontalAlignment="Center" FontSize="18" FontFamily="Basement Grotesque Black"
+                           FontWeight="Bold" Text="TRAINING CATEGORY"
+                               TextWrapping="Wrap"
+                               TextAlignment="Center" Foreground="White"/>
+
+                    <!-- Window Sub-Heading -->
+                    <TextBlock Margin="0 10 0 0" HorizontalAlignment="Center" FontSize="13" FontFamily="Consolas" Width="300"
+                           FontWeight="Bold" Text="Select one of the game modes to test your knowledge The dewey Decimal System"
+                               TextWrapping="Wrap"
+                               TextAlignment="Center" Foreground="White"/>
+
+                    <!-- Game Categories -->
+
+                    <!-- Replace Book Option -->
+                    <Button x:Name="btnReplace" FontFamily="Basement Grotesque Black" FontSize="14" Foreground="White" FontWeight="Medium" Height="70" Margin="0 80 0 0" Width="460" Click="btnReplace_Click">
+
+                        <!-- Applying Button Style -->
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#1b1b1b"/>
+                                <Setter Property="BorderThickness" Value="3"/>
+                                <Setter Property="BorderBrush" Value="#343434"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="BorderThickness" Value="3"/>
+                                        <Setter Property="BorderBrush" Value="#a9ded8"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <!-- Applying Button Template -->
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Grid>
+                                    <!-- Button Content -->
+                                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="20">
+                                        <!-- Content Container (StackPanel) -->
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                            <!-- Icon Image (aligned to the left of text) -->
+                                            <Image Source="Assets/replaceBookIcon.png" Width="32" Height="32" HorizontalAlignment="Left" Margin="0,0,8,0"/>
+                                            <!-- Text Content -->
+                                            <TextBlock x:Name="Hleeoe" Text="Replace Book" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Border>
+                                </Grid>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <!-- Identify Area Option -->
+                    <Button x:Name="btnIdentify" FontFamily="Basement Grotesque Black" FontSize="14" Foreground="White" FontWeight="Medium" Height="70" Margin="0 40 0 0" Width="460" Click="btnIdentify_Click">
+
+                        <!-- Applying Button Style -->
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#1b1b1b"/>
+                                <Setter Property="BorderThickness" Value="3"/>
+                                <Setter Property="BorderBrush" Value="#343434"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="BorderThickness" Value="3"/>
+                                        <Setter Property="BorderBrush" Value="#a9ded8"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <!-- Applying Button Template -->
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Grid>
+                                    <!-- Button Content -->
+                                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="20">
+                                        <!-- Content Container (StackPanel) -->
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                            <!-- Icon Image (aligned to the left of text) -->
+                                            <Image Source="Assets/identifyAreaIcon.png" Width="32" Height="32" HorizontalAlignment="Left" Margin="0,0,8,0"/>
+                                            <!-- Text Content -->
+                                            <TextBlock Text="Identify Area" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Border>
+                                </Grid>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <!-- Find Call Number Option -->
+                    <Button x:Name="btnNumber" FontFamily="Basement Grotesque Black" FontSize="14" Foreground="White" FontWeight="Medium" Height="70" Margin="0 40 0 0" Width="460" Click="btnNumber_Click">
+
+                        <!-- Applying Button Style -->
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#1b1b1b"/>
+                                <Setter Property="BorderThickness" Value="3"/>
+                                <Setter Property="BorderBrush" Value="#343434"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="BorderThickness" Value="3"/>
+                                        <Setter Property="BorderBrush" Value="#a9ded8"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <!-- Applying Button Template -->
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Grid>
+                                    <!-- Button Content -->
+                                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="20">
+                                        <!-- Content Container (StackPanel) -->
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                            <!-- Icon Image (aligned to the left of text) -->
+                                            <Image Source="Assets/callNumberIcon.png" Width="32" Height="32" HorizontalAlignment="Left" Margin="30,0,8,0"/>
+                                            <!-- Text Content -->
+                                            <TextBlock Text="Find Call Number" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Border>
+                                </Grid>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <!-- Return Back Button -->
+                    <Button x:Name="btnBack"
+                            BorderThickness="0"
+                            Content="➜"
+                            Foreground="White"
+                            FontSize="15"
+                            FontFamily="Basement Grotesque Black"
+                            Cursor="Hand"
+                            Grid.Column="2"
+                            Margin="0,0,630,0"
+                            Width="65"
+                            Click="btnBack_Click" RenderTransformOrigin="0.5,0.5">
+
+                        <!-- Applying Button Render Transformation -->
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="180"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+
+                        <!-- Applying Button Style -->
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#688985  "/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#232b2b"/>
+                                    </Trigger>
+                                </Style.Triggers>
+
+                            </Style>
+                        </Button.Style>
+
+                        <!-- Applying Button Template -->
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="60" Height="35" CornerRadius="15"
+                                        Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                </StackPanel>
+
+            </Grid>
+        </Border>
+
+    </Border>
+</Window>
